@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('chirps', function (Blueprint $table) {
             $table->id();
+            
+            //Asignamos las columnas que utilizaremos en nuestra tabla chirps y sus constraints.
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('message');
+
             $table->timestamps();
         });
     }

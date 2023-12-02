@@ -17,8 +17,7 @@ use App\Http\Controllers\ChirpController;
 */
 
 Route::get('/', function () {
-    //return view('welcome');
-    echo "<h1>Hello, World!</h1>"; 
+    return view('welcome');
 });
 
 Route::get('/dashboard', function () {

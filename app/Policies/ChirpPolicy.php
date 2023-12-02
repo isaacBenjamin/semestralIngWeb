@@ -37,7 +37,7 @@ class ChirpPolicy
      */
     public function update(User $user, Chirp $chirp): bool
     {
-        //
+        return $chirp->user()->is($user);
     }
 
     /**
@@ -46,6 +46,10 @@ class ChirpPolicy
     public function delete(User $user, Chirp $chirp): bool
     {
         //
+        // Podemos usar esta lógica y repetirla
+        //return $chirp->user()->is($user);
+        return $this->update($user, $chirp);
+        //Cualquier autorizado a actualizar un Chirp está autorizado a eliminarlo
     }
 
     /**

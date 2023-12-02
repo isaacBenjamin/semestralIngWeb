@@ -26,7 +26,7 @@ Route::get('/dashboard', function () {
 
 Route::resource('chirps', ChirpController::class)
     //todas las funciones del controlador que se aceptan
-    ->only(['index', 'store', 'edit', 'update'])
+    ->only(['index', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth','verified']);
     //Al escribir php artisan route:list    
 

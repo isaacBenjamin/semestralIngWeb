@@ -28,7 +28,7 @@
                                     <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
                                 @endunless
                             </div>
-                            {{-- hola --}}
+                            {{-- Si el usuario está autenticado puede editar y eliminar sus propios posts --}}
                             @if ($chirp->user->is(auth()->user()))
                                 <x-dropdown>
                                     <x-slot name="trigger">
@@ -44,6 +44,16 @@
                                         <x-dropdown-link :href="route('chirps.edit', $chirp)">
                                             {{ __('Edit') }}
                                         </x-dropdown-link>
+                                        {{-- Agregando el botón de eliminar chirp --}}
+                                        <form method="POST" action="{{ route('chirps.destroy', $chirp) }}">
+                                            @csrf
+                                            @method('delete')
+                                            <x-dropdown-link :href="route('chirps.destroy', $chirp)"
+                                                onclick="event.preventDefault(); this.closest('form').submit();">
+                                                {{ __('Delete') }}
+                                            </x-dropdown-link>
+                                        </form>
+
                                     </x-slot>
                                 </x-dropdown>
                             @endif
